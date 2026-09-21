@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<title>Career Fair Field Card</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+  :root{
+    --paper:#e9ecef; --card:#ffffff; --card-2:#f4f6f8;
+    --ink:#101720; --ink-2:#39424e; --muted:#5d6874;
+    --line:#d2d8de; --line-2:#e3e7ec;
+    --accent:#0a6a6d; --accent-soft:#d9ecec;
+    --hot:#a8440c; --hot-soft:#f6e3d7;
+    --bar:rgba(233,236,239,.92);
+    --shadow:0 1px 2px rgba(16,23,32,.06),0 6px 18px rgba(16,23,32,.06);
+    --navshadow:0 -1px 0 var(--line), 0 -10px 24px rgba(16,23,32,.06);
+    padding-top:env(safe-area-inset-top, 0px);
+    padding-bottom:env(safe-area-inset-bottom, 0px);
+    color-scheme:light dark;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#0b0f14; --card:#151c24; --card-2:#1b232d;
+      --ink:#e9eef4; --ink-2:#c2cbd6; --muted:#8e9bab;
+      --line:#2a3541; --line-2:#222c37;
+      --accent:#3fb9b2; --accent-soft:#122f31;
+      --hot:#f0905a; --hot-soft:#331d12;
+      --bar:rgba(11,15,20,.92);
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 18px rgba(0,0,0,.3);
+      --navshadow:0 -1px 0 var(--line), 0 -10px 24px rgba(0,0,0,.4);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#0b0f14; --card:#151c24; --card-2:#1b232d;
+    --ink:#e9eef4; --ink-2:#c2cbd6; --muted:#8e9bab;
+    --line:#2a3541; --line-2:#222c37;
+    --accent:#3fb9b2; --accent-soft:#122f31;
+    --hot:#f0905a; --hot-soft:#331d12;
+    --bar:rgba(11,15,20,.92);
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 18px rgba(0,0,0,.3);
+    --navshadow:0 -1px 0 var(--line), 0 -10px 24px rgba(0,0,0,.4);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+    font-size:14px; -webkit-text-size-adjust:100%; overscroll-behavior-y:none;
+  }
+  img{max-width:100%}
+  [hidden]{display:none!important}
+
+  .appbar{
+    position:sticky; top:env(safe-area-inset-top, 0px); z-index:30;
+    background:var(--bar);
+    backdrop-filter:saturate(1.6) blur(12px);
+    -webkit-backdrop-filter:saturate(1.6) blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  .appbar-in{max-width:720px;margin:0 auto;padding:11px 16px 0;display:flex;align-items:center;gap:10px}
+  .now{font-size:19px;font-weight:700;letter-spacing:-.015em;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;flex:1 1 auto}
+  .badge{flex:0 0 auto;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:9.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:4px 7px;border-radius:4px;background:var(--accent-soft);color:var(--accent)}
+  .badge.warn{background:var(--hot-soft);color:var(--hot)}
+
+  .jump{max-width:720px;margin:0 auto;display:flex;gap:5px;padding:9px 16px;overflow-x:auto;scrollbar-width:none}
+  .jump::-webkit-scrollbar{display:none}
+  .jump button{flex:0 0 auto;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:7px 11px;border-radius:6px;border:1px solid transparent;background:transparent;color:var(--muted);cursor:pointer;white-space:nowrap;min-height:32px}
+  .jump button[aria-current="true"]{background:var(--card);color:var(--ink);border-color:var(--line)}
+  .jump button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  .stage{max-width:720px;margin:0 auto;padding:16px 16px 0;touch-action:pan-y}
+  .lede{color:var(--muted);font-size:15px;line-height:1.55;margin:0 0 4px;max-width:62ch}
+  .lede b{color:var(--ink-2);font-weight:600}
+
+  section.block{background:var(--card);border:1px solid var(--line-2);border-radius:14px;padding:15px 16px 17px;margin-top:12px;box-shadow:var(--shadow);scroll-margin-top:calc(104px + env(safe-area-inset-top, 0px))}
+  section.block.close-block{border-color:var(--hot);border-width:1.5px}
+
+  .lab{display:flex;align-items:center;gap:8px;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10.5px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin:0 0 11px}
+  .lab .n{color:var(--accent)}
+  .close-block .lab .n{color:var(--hot)}
+  .lab .secs{margin-left:auto;opacity:.75;letter-spacing:.06em}
+
+  .say{font-family:"Source Serif 4",Georgia,serif;font-size:19px;line-height:1.5;color:var(--ink);margin:0;max-width:58ch}
+  .say + .say{margin-top:13px}
+  .say em{color:var(--accent);font-style:italic}
+  .close-block .say em{color:var(--hot)}
+
+  ol.qs{margin:0;padding:0;list-style:none;counter-reset:q}
+  ol.qs li{counter-increment:q;display:grid;grid-template-columns:20px 1fr;gap:11px;padding:11px 0;border-top:1px solid var(--line-2)}
+  ol.qs li:first-child{border-top:0;padding-top:0}
+  ol.qs li::before{content:counter(q);font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;font-weight:600;color:var(--accent);padding-top:5px}
+  ol.qs p{margin:0;font-family:"Source Serif 4",Georgia,serif;font-size:17.5px;line-height:1.45}
+  ol.qs .why{display:block;margin-top:5px;font-family:"Archivo",sans-serif;font-size:13px;line-height:1.45;color:var(--muted)}
+
+  .note{margin-top:12px;padding-top:11px;border-top:1px dashed var(--line);font-size:13.5px;line-height:1.5;color:var(--muted)}
+  .note b{color:var(--ink-2);font-weight:600}
+
+  .steps{margin:0;padding:0;list-style:none}
+  .steps li{display:grid;grid-template-columns:16px 1fr;gap:11px;font-size:15.5px;line-height:1.5;color:var(--ink-2);padding:7px 0}
+  .steps li::before{content:"";width:7px;height:7px;margin-top:8px;border-radius:2px;background:var(--hot)}
+
+  .capture{margin-top:12px;background:var(--card-2);border:1px dashed var(--line);border-radius:14px;padding:14px 16px 16px}
+  .cap-row{display:flex;flex-wrap:wrap;gap:9px}
+  .capture input[type=text]{flex:1 1 100%;min-width:0;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:15px;padding:13px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink)}
+  .capture input[type=text]:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+  .toggle{flex:1 1 auto;font-family:"Archivo",sans-serif;font-size:15px;font-weight:600;padding:13px 16px;border-radius:10px;min-height:46px;border:1px solid var(--line);background:var(--card);color:var(--ink-2);cursor:pointer}
+  .toggle[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+  .toggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:1px;background:var(--line-2);border-radius:10px;overflow:hidden;border:1px solid var(--line-2)}
+  .fact{background:var(--card);padding:11px 13px}
+  .fact dt{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:9.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 3px}
+  .fact dd{margin:0;font-size:15px;font-weight:600;line-height:1.3}
+
+  .mail{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12.5px;line-height:1.65;white-space:pre-wrap;background:var(--card-2);border:1px solid var(--line-2);border-radius:10px;padding:13px;margin:0;overflow-x:auto;color:var(--ink-2)}
+
+  .order{margin:0;padding:0;list-style:none;counter-reset:o}
+  .order li{counter-increment:o;display:grid;grid-template-columns:24px 1fr auto;gap:11px;align-items:baseline;padding:10px 0;border-top:1px solid var(--line-2)}
+  .order li:first-child{border-top:0;padding-top:0}
+  .order li::before{content:counter(o);font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12px;font-weight:600;color:var(--accent)}
+  .order .nm{font-size:16px;font-weight:600}
+  .order .tag{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:right}
+
+  .swipehint{text-align:center;margin:18px 0 0;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);opacity:.75}
+  .tailpad{height:26px}
+
+  .nav{position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--bar);backdrop-filter:saturate(1.6) blur(12px);-webkit-backdrop-filter:saturate(1.6) blur(12px);box-shadow:var(--navshadow);padding-bottom:env(safe-area-inset-bottom, 0px)}
+  .nav-in{max-width:720px;margin:0 auto;display:flex;gap:7px;padding:9px 12px 10px;overflow-x:auto;scrollbar-width:none}
+  .nav-in::-webkit-scrollbar{display:none}
+  .tab{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:4px;min-width:66px;min-height:48px;padding:7px 11px;border-radius:12px;border:1px solid transparent;background:transparent;color:var(--muted);cursor:pointer;font-family:"Archivo",sans-serif;font-size:12.5px;font-weight:600;white-space:nowrap}
+  .tab .dot{width:6px;height:6px;border-radius:50%;background:transparent}
+  .tab.done .dot{background:var(--accent)}
+  .tab[aria-selected="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .tab[aria-selected="true"].done .dot{background:var(--paper)}
+  .tab:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  @media (max-width:400px){
+    .now{font-size:17px}
+    .say{font-size:18px}
+    ol.qs p{font-size:16.5px}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header class="appbar">
+  <div class="appbar-in">
+    <span class="now" id="now"></span>
+    <span class="badge" id="badge"></span>
+  </div>
+  <div class="jump" id="jump"></div>
+</header>
+
+<main class="stage" id="stage"></main>
+
+<nav class="nav"><div class="nav-in" id="tabs" role="tablist"></div></nav>
+
+<script>
+/* =====================================================================
+   DATA — this is the only part the skill replaces.
+
+   Each entry is one tab. The first entry is the shared "Start" tab and
+   should carry `counted:false` so it is excluded from the progress dots
+   and gets no note-capture field.
+
+   {
+     id:      "rtx",              // unique, used for localStorage keys
+     chip:    "RTX",              // bottom tab label — keep it SHORT
+     title:   "RTX",              // app bar title
+     rank:    "Priority 1",       // badge text, e.g. "Priority 2" / "Skip"
+     warn:    true,               // optional — badge turns orange
+     counted: false,              // optional — omit for company tabs
+     sub:     "HTML string.",     // the honest fit assessment
+     facts:   [["Label","Value"]],// optional, Start tab only
+     blocks:  [ ...see below... ]
+   }
+
+   Block types:
+     type:"say"    lines:["<p>", ...]      spoken script, serif
+     type:"qs"     items:[[question, why]] numbered questions
+     type:"steps"  items:["...", ...]      action list
+     type:"mail"   text:"..."              monospace, preserves newlines
+     type:"order"  items:[[name, tag]]     ranked list
+
+   Every block takes: n ("01"), short ("Pitch" — jump bar label),
+   lab (full heading), secs ("~30 sec"), optional note, optional
+   close:true to get the orange treatment.
+
+   Inside "say" lines, wrap the phrase that must land in <em>.
+   ===================================================================== */
+
+const CARDS = [
+  /* SKILL: replace this array. See reference/content-rules.md. */
+];
+
+/* =====================================================================
+   ENGINE — leave this alone.
+   ===================================================================== */
+
+const store = {
+  get(k,d){ try{const v=localStorage.getItem("fair:"+k);return v===null?d:JSON.parse(v);}catch(e){return d} },
+  set(k,v){ try{localStorage.setItem("fair:"+k,JSON.stringify(v));}catch(e){} }
+};
+const esc = s => String(s).replace(/&(?![a-z#]+;)/g,"&amp;").replace(/</g,"&lt;");
+
+function blockHTML(b,i){
+  let body="";
+  if(b.type==="say") body = b.lines.map(l=>`<p class="say">${l}</p>`).join("");
+  else if(b.type==="qs") body = `<ol class="qs">`+b.items.map(([q,w])=>`<li><p>&ldquo;${q}&rdquo;<span class="why">${w}</span></p></li>`).join("")+`</ol>`;
+  else if(b.type==="steps") body = `<ul class="steps">`+b.items.map(x=>`<li>${x}</li>`).join("")+`</ul>`;
+  else if(b.type==="mail") body = `<pre class="mail">${esc(b.text)}</pre>`;
+  else if(b.type==="order") body = `<ol class="order">`+b.items.map(([n,t])=>`<li><span class="nm">${n}</span><span class="tag">${t}</span></li>`).join("")+`</ol>`;
+  return `<section class="block${b.close?" close-block":""}" id="sec-${i}">
+    <p class="lab"><span class="n">${b.n}</span> ${b.lab}<span class="secs">${b.secs||""}</span></p>
+    ${body}${b.note?`<p class="note">${b.note}</p>`:""}
+  </section>`;
+}
+
+function cardHTML(c){
+  const facts = c.facts ? `<section class="block" id="sec-facts"><p class="lab"><span class="n">00</span> Have these ready</p>
+    <dl class="facts">${c.facts.map(([k,v])=>`<div class="fact"><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl></section>` : "";
+  const capture = c.counted===false ? "" : `
+    <div class="capture">
+      <p class="lab">After you walk away &mdash; 15 seconds</p>
+      <div class="cap-row">
+        <input type="text" id="note-${c.id}" placeholder="Name &middot; email &middot; what they said" autocomplete="off">
+        <button class="toggle" id="done-${c.id}" aria-pressed="false">Worked it</button>
+      </div>
+    </div>`;
+  return `<p class="lede">${c.sub}</p>${facts}
+    ${c.blocks.map(blockHTML).join("")}${capture}
+    <p class="swipehint">Swipe left or right to change company</p><div class="tailpad"></div>`;
+}
+
+const tabsEl=document.getElementById("tabs"), stage=document.getElementById("stage"),
+      jumpEl=document.getElementById("jump"), nowEl=document.getElementById("now"),
+      badgeEl=document.getElementById("badge");
+let active=0, io=null;
+
+CARDS.forEach((c,i)=>{
+  const b=document.createElement("button");
+  b.className="tab"; b.type="button"; b.setAttribute("role","tab");
+  b.setAttribute("aria-selected", i===0?"true":"false");
+  b.innerHTML=`<span></span><span class="dot"></span>`;
+  b.firstChild.textContent=c.chip;
+  b.addEventListener("click",()=>select(i));
+  tabsEl.appendChild(b);
+});
+
+function refreshTabs(){
+  CARDS.forEach((c,i)=>{
+    if(c.counted===false) return;
+    tabsEl.children[i].classList.toggle("done", !!store.get("done:"+c.id,false));
+  });
+}
+
+function buildJump(c){
+  jumpEl.innerHTML="";
+  c.blocks.forEach((b,i)=>{
+    const t=document.createElement("button");
+    t.type="button"; t.textContent=b.short||b.lab;
+    t.setAttribute("aria-current", i===0?"true":"false");
+    t.addEventListener("click",()=>document.getElementById("sec-"+i)?.scrollIntoView({behavior:"smooth",block:"start"}));
+    jumpEl.appendChild(t);
+  });
+}
+
+function watchSections(c){
+  if(io) io.disconnect();
+  if(!("IntersectionObserver" in window)) return;
+  io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting) return;
+      const i = Number(e.target.id.replace("sec-",""));
+      if(Number.isNaN(i)) return;
+      Array.from(jumpEl.children).forEach((el,j)=>el.setAttribute("aria-current", j===i?"true":"false"));
+      jumpEl.children[i]?.scrollIntoView({block:"nearest",inline:"center",behavior:"smooth"});
+    });
+  },{rootMargin:"-120px 0px -65% 0px"});
+  c.blocks.forEach((b,i)=>{ const el=document.getElementById("sec-"+i); if(el) io.observe(el); });
+}
+
+function select(i){
+  active=i;
+  const c=CARDS[i];
+  Array.from(tabsEl.children).forEach((el,j)=>el.setAttribute("aria-selected", j===i?"true":"false"));
+  nowEl.textContent=c.title;
+  badgeEl.textContent=c.rank||"";
+  badgeEl.classList.toggle("warn", !!c.warn);
+  stage.innerHTML=cardHTML(c);
+  buildJump(c);
+  window.scrollTo({top:0,behavior:"instant"});
+
+  if(c.counted!==false){
+    const input=document.getElementById("note-"+c.id), btn=document.getElementById("done-"+c.id);
+    input.value=store.get("note:"+c.id,"")||"";
+    input.addEventListener("input",()=>store.set("note:"+c.id,input.value));
+    const setBtn=v=>{btn.setAttribute("aria-pressed",v?"true":"false");btn.textContent=v?"Worked ✓":"Worked it";};
+    setBtn(!!store.get("done:"+c.id,false));
+    btn.addEventListener("click",()=>{
+      const v=!store.get("done:"+c.id,false);
+      store.set("done:"+c.id,v); setBtn(v); refreshTabs();
+    });
+  }
+  watchSections(c);
+  tabsEl.children[i].scrollIntoView({block:"nearest",inline:"center",behavior:"smooth"});
+}
+
+let sx=0, sy=0, tracking=false;
+stage.addEventListener("touchstart",e=>{
+  if(e.touches.length!==1 || e.target.closest("pre, input")){ tracking=false; return; }
+  sx=e.touches[0].clientX; sy=e.touches[0].clientY; tracking=true;
+},{passive:true});
+stage.addEventListener("touchend",e=>{
+  if(!tracking) return; tracking=false;
+  const dx=e.changedTouches[0].clientX-sx, dy=e.changedTouches[0].clientY-sy;
+  if(Math.abs(dx)<65 || Math.abs(dx)<Math.abs(dy)*1.6) return;
+  if(dx<0 && active<CARDS.length-1) select(active+1);
+  if(dx>0 && active>0) select(active-1);
+},{passive:true});
+
+if(CARDS.length){ select(0); refreshTabs(); }
+else { stage.innerHTML='<p class="lede">No cards yet. Fill the <code>CARDS</code> array.</p>'; }
+</script>
+</body>
+</html>

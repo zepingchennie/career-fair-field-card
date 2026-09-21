@@ -1,0 +1,12 @@
+# Normalize all text files to LF in the repository.
+# Git checks them out with native line endings on Windows.
+* text=auto eol=lf
+
+# Binary assets pass through untouched.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.pdf binary
+*.woff binary
+*.woff2 binary

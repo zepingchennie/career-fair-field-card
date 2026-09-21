@@ -14,8 +14,9 @@ they tell you to just apply online, and a follow-up email template.
 It renders as a single self-contained HTML page. Add it to your phone's home
 screen and it opens like an app.
 
-Open [`examples/example-field-card.html`](examples/example-field-card.html) in a
-browser to see a complete generated card.
+**[→ Try the live demo](https://zepingchennie.github.io/career-fair-field-card/)**
+— a complete generated card for an invented candidate. Open it on your phone;
+that's what it's built for.
 
 ## Why this exists
 
@@ -37,7 +38,7 @@ you hit the ones that matter while you're still sharp and the lines are short.
 **Claude Code / Cowork** — clone into your skills directory:
 
 ```bash
-git clone https://github.com/<you>/career-fair-field-card.git \
+git clone https://github.com/zepingchennie/career-fair-field-card.git \
   ~/.claude/skills/career-fair-field-card
 ```
 
@@ -92,8 +93,13 @@ reference/
 examples/
   example-data.js                     a fictional candidate's filled CARDS array
   example-field-card.html             that data rendered through the template
-  build-example.py                    regenerates the above from template + data
+  build-example.py                    regenerates the rendered pages from the data
+docs/
+  index.html                          the live demo, served by GitHub Pages
 ```
+
+`docs/index.html` is generated, not hand-edited. To change the demo, edit
+`examples/example-data.js` and re-run `python3 examples/build-example.py`.
 
 ## Design notes
 
